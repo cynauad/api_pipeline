@@ -69,7 +69,14 @@ python main.py
 - Convierte `order_date` a tipo datetime
 - Agrega columnas derivadas: `period` (YYYY-MM), `year`, `have_promotion`
 - Elimina columnas innecesarias: `promotion_id`, `notes`
-- Descarta filas con `total_amount` nulo
+
+Decisiones de limpieza
+
+| Campo | Problema | Decisión |
+|---|---|---|
+| `notes` | 85.5% nulos (texto libre sin valor estructural) | Eliminado |
+| `promotion_id` | 75.4% nulos | Convertido a binario: `have_promotion` (0/1) |
+| Fechas | Tipo object | Convertidas a datetime: `order_date`
 
 ### 3. Almacenamiento (`save_data`)
 - Guarda un archivo Parquet completo: `output/orders_full.parquet`
@@ -83,3 +90,7 @@ python main.py
 | `pandas` | Transformación de datos |
 | `pyarrow` | Escritura de archivos Parquet |
 | `python-dotenv` | Lectura de variables de entorno desde `.env` |
+
+
+## Autor
+Cynthia Auad
