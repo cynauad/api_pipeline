@@ -17,6 +17,7 @@ api_pipeline/
 ├── main.py          # Pipeline principal (extracción, transformación, guardado)
 ├── config.py        # Configuración y variables de entorno
 ├── requirements.txt # Dependencias
+├── dockerfile       # Imagen Docker del pipeline
 ├── .env             # Credenciales (no se versiona)
 └── output/          # Archivos Parquet generados
     ├── orders/      # Particionado por periodo (YYYY-MM)
@@ -25,10 +26,12 @@ api_pipeline/
 
 ## Requisitos
 
-- Python 3.8+
+- Python 3.9+ — o Docker
 - Credenciales de acceso a la API (token y email)
 
 ## Instalación
+
+### Opción A — Entorno virtual
 
 ```bash
 # Crear entorno virtual
@@ -39,6 +42,16 @@ source venv-api/Scripts/activate
 
 # Instalar dependencias
 pip install -r requirements.txt
+```
+
+### Opción B — Docker
+
+```bash
+# Construir la imagen
+docker build -t api-pipeline .
+
+# Ejecutar el contenedor
+docker run api-pipeline
 ```
 
 ## Configuración
